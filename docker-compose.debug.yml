@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  api:
+    image: justonevote/api
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - public
+    ports:
+      - 9229:9229
+    labels:
+      - traefik.enable=true
+  client-web:
+    image: justonevote/client-web
+    build:
+      context: .
+      dockerfile: ./apps/client/web/Dockerfile
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - public
+    labels:
+      - traefik.enable=true
+networks:
+  public:
+    name: traefik_webgateway
+    external: true

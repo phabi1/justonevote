@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Debug: api",
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "port": 9229,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/usr/src/app",
+            "protocol": "inspector",
+            "skipFiles": ["<node_internals>/**"]
+          }
+    ]
+}
